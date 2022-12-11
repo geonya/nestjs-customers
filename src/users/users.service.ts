@@ -62,6 +62,7 @@ export class UsersService {
       };
     }
   }
+
   async validateUser(email: string, password: string) {
     const user = await this.users.findOne({ where: { email } });
     if (!user) return null;

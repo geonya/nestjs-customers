@@ -1,7 +1,10 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CurrentUser } from '../auth/curret-user.decorator';
 import { CreateUserInput, CreateUserOutput } from './dtos/create-user.dto';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 
 @Resolver((of) => User)
 export class UsersResolver {
@@ -16,6 +19,12 @@ export class UsersResolver {
 
   @Query((returns) => Boolean)
   async getUser() {
-    return true;
+    return;
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Query((returns) => User)
+  async me(@CurrentUser() user: User) {
+    return user;
   }
 }

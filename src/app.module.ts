@@ -32,7 +32,7 @@ import { AuthModule } from './auth/auth.module';
       database: process.env.DB_DATABASE,
       logging: process.env.NODE_ENV === 'development',
       synchronize: true, // DB 수정 실시간 반영하기, 개발 모드에서만 허용,
-      entities: [__dirname + '/**/*.entity.ts'],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,

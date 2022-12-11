@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
-import { Response, response } from 'express';
+import { type Response } from 'express';
 import { User } from '../users/entities/user.entity';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './curret-user.decorator';
